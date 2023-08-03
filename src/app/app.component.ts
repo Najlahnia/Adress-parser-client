@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Adress-parser-client';
+  title : string | undefined ;
+  showTable : any;
+  getParsedAdressFromBack(){
+    // to do : integrer l'api back 
+    // get adress parsed
+  }
 }
