@@ -1,0 +1,10 @@
+/* app.component.scss */
+
+/* Applique un cadre bleu ciel autour de toute la page */
+:host {
+    display: block;
+    border: 20px solid #87CEEB; /* Couleur bleu ciel pour le cadre */
+    padding: 20px; /* Espace intérieur du cadre */
+    margin: 20px; /* Marge autour du cadre */
+  }
+  

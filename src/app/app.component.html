@@ -1,43 +1,76 @@
 <div class="container mt-5">
-<form>
-  <h3>Please inter your adress to parse : </h3>
-  <input name="title" [(ngModel)]="showTable">
-</form>
-<div *ngIf="!showTable.lenght">
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Adress</th>
-      <th scope="col">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td>Country</td>
-        <td>Canada</td>
-      </tr>
-    <tr>
-        <td>City</td>
-        <td>Paris</td>
-      </tr>
-      <tr>
-        <td>City</td>
-        <td>Paris</td>
-      </tr> <tr>
-        <td>City</td>
-        <td>Courbevoie</td>
-      </tr> <tr>
-        <td>City</td>
-        <td>Paris</td>
-      </tr> <tr>
-        <td>City</td>
-        <td>Paris</td>
-      </tr> <tr>
-        <td>City</td>
-        <td>Paris</td>
-      </tr>
-  </tbody>
-</table>
-</div>
+  <h1>Address Parser</h1>
+  <app-dropdown (countrySelected)="onCountrySelected($event)"></app-dropdown>
+  <div class="row">
+    <form (submit)="onSubmit()">
+      <h5>Enter the address to parse:</h5>
+      <input name="title" style="width: 600px;" [(ngModel)]="address">
+      <button type="submit" class="btn btn-primary  mx-5">Parse Address</button>
+    </form>
+  </div>
 
+  <div *ngIf="addressResult && address; else noData" class="mt-5">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>houseNumber</td>
+          <td>{{ addressResult.number }}</td>
+        </tr>
+        <tr>
+          <td>streetName</td>
+          <td>{{ addressResult.street }}</td>
+        </tr>
+    
+    <tr>
+      <td>postdirectional</td>
+      <td>{{ addressResult.postdirectional }}</td>
+    </tr>
+    <tr>
+      <td>predirectional</td>
+      <td>{{ addressResult.predirectional }}</td>
+    </tr>
+    <tr>
+      <td>secondaryNumber</td>
+      <td>{{ addressResult.secondaryNumber }}</td>
+    </tr>
+    <tr>
+      <td>secondaryUnit</td>
+      <td>{{ addressResult.secondaryUnit }}</td>
+    </tr>
+        <tr>
+          <td>streetLine</td>
+          <td>{{ addressResult.streetLine }}</td>
+        </tr>
+        <tr>
+          <td>zipCode</td>
+          <td>{{ addressResult.zipCode }}</td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td>{{ addressResult.city }}</td>
+        </tr>
+        <tr>
+          <td>state</td>
+          <td>{{ addressResult.state }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noData>
+    <div class="text-danger mt-5" *ngIf="error">
+      <div class="alert alert-danger">
+        Resources.ErrorNotParsable
+      </div>
+    </div>
+  </ng-template>
+
+  <button (click)="openPopup()">Documentation</button>
+  <app-popup *ngIf="isPopupVisible" (close)="closePopup()"></app-popup>
+  <br>
+  <!-- <h1>informations</h1>
+  <a routerLink="/">Home</a>
+  <br>
+  <a routerLink="/about">HomeAbout</a> -->
+
+  <!-- <router-outlet></router-outlet> -->
 </div>

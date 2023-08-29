@@ -1,0 +1,5 @@
+<h3>You should select a country</h3>
+<select [(ngModel)]="selectedCountry" (ngModelChange)="update()">
+  <option value="default"></option>
+  <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+</select>
